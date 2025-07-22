@@ -1,8 +1,17 @@
-{
-  "id": 1,
-  "type": "expense",
-  "amount": 15.5,
-  "category": "Food",
-  "date": "2025-07-22",
-  "note": "Lunch"
-}
+[
+    {
+        "amount": 500.0,
+        "category": "sfadgva",
+        "description": "adfgvf"
+    },
+    {
+        "amount": 700.0,
+        "category": "fsa",
+        "description": "gas"
+    },
+    {
+        "amount": 500.0,
+        "category": "123",
+        "description": "sfd"
+    }
+]

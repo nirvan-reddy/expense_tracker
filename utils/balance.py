@@ -1,6 +1,6 @@
 import json
 
-def calculate_balance(file_path):
+def calculate_spent(file_path):
     try:
         with open(file_path, 'r') as f:
             transactions = json.load(f)
@@ -9,4 +9,4 @@ def calculate_balance(file_path):
         return
 
     total = sum(txn['amount'] for txn in transactions)
-    print(f"Total Balance: ${total:.2f}")
+    print(f"Total Spent: ${total:.2f}")

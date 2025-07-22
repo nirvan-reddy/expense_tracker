@@ -8,21 +8,25 @@ def add_transaction(amount, category, description, file_path):
         "description": description
     }
 
-    # Load existing transactions or create a new list
+    transactions = []
+
+    # Load existing transactions if the file exists
     if os.path.exists(file_path):
         try:
             with open(file_path, 'r') as f:
-                transactions = json.load(f)
+                data = json.load(f)
+                if isinstance(data, list):
+                    transactions = data
+                else:
+                    print("Warning: data.json is not a list. Resetting to new list.")
         except json.JSONDecodeError:
-            transactions = []
-    else:
-        transactions = []
+            print("Warning: JSON decode error. Starting with empty list.")
 
     # Append new transaction
     transactions.append(transaction)
 
-    # Save back to file
+    # Save updated list back to the file
     with open(file_path, 'w') as f:
         json.dump(transactions, f, indent=4)
 
-    print(f" Added: {description} - ₹{amount}")
+    print(f"Added: {description} - ₹{amount}")
