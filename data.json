@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "type": "expense",
+  "amount": 15.5,
+  "category": "Food",
+  "date": "2025-07-22",
+  "note": "Lunch"
+}
