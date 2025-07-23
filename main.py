@@ -2,6 +2,7 @@ from utils.add import add_transaction
 from utils.view import view_transactions
 from utils.delete import delete_transaction
 from utils.balance import calculate_spent
+from utils.search import search_transaction  # ✅ NEW: import your search function
 
 def show_menu():
     print("\n=== Expense Tracker ===")
@@ -9,14 +10,15 @@ def show_menu():
     print("2. View Transactions")
     print("3. Delete Transaction")
     print("4. Total Spent")
-    print("5. Exit")
+    print("5. Search Transaction")  # ✅ NEW menu option
+    print("6. Exit")
 
 def main():
     show_menu()
     file_path = "data.json"
 
     while True:
-        choice = input("Enter your choice (1-5): ")
+        choice = input("Enter your choice (1-6): ")
 
         if choice == "1":
             try:
@@ -41,11 +43,14 @@ def main():
             calculate_spent(file_path)
 
         elif choice == "5":
+            keyword = input("Enter keyword to search (date, category, or description): ")
+            search_transaction(file_path, keyword)
+        elif choice == "6":
             print("Goodbye!")
             break
 
         else:
-            print("Invalid choice. Please enter a number between 1 and 5.")
+            print("Invalid choice. Please enter a number between 1 and 6.")
 
 if __name__ == "__main__":
     main()
