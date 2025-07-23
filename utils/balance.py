@@ -1,13 +1,14 @@
 import json
 from collections import defaultdict
 
-def calculate_balance(file_path):
+def calculate_spent(file_path):
     try:
         with open(file_path, 'r') as f:
             transactions = json.load(f)
     except json.JSONDecodeError:
         print("No transactions found.")
         return
+
 
     if not transactions:
         print("No transactions to display.")
@@ -26,3 +27,7 @@ def calculate_balance(file_path):
     # Calculate total
     total = sum(category_totals.values())
     print(f"\n Total Spent: ₹{total:.2f}")
+
+    total = sum(txn['amount'] for txn in transactions)
+    print(f"Total Spent: ${total:.2f}")
+
