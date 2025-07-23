@@ -1,6 +1,7 @@
 import json
+from collections import defaultdict
 
-def calculate_balance(file_path):
+def calculate_spent(file_path):
     try:
         with open(file_path, 'r') as f:
             transactions = json.load(f)
@@ -8,5 +9,20 @@ def calculate_balance(file_path):
         print("No transactions found.")
         return
 
-    total = sum(txn['amount'] for txn in transactions)
-    print(f"Total Balance: ${total:.2f}")
+    if not transactions:
+        print("No transactions to display.")
+        return
+
+    # Group amounts by category
+    category_totals = defaultdict(float)
+    for txn in transactions:
+        category = txn.get('category', 'Uncategorized')
+        category_totals[category] += txn.get('amount', 0)
+
+    print("\nSpending Breakdown:\n")
+    for category, amount in category_totals.items():
+        print(f"On {category.title()}, you spent ₹{amount:.2f}")
+
+    # Calculate total
+    total = sum(category_totals.values())
+    print(f"\n Total Spent: ₹{total:.2f}")
