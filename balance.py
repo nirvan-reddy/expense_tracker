@@ -1,7 +1,7 @@
 import json
 from collections import defaultdict
 
-def calculate_spent(file_path):
+def calculate_balance(file_path):
     try:
         with open(file_path, 'r') as f:
             transactions = json.load(f)
